@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pomodoro</title>
+  </head>
+  <body>
+    <section class="pomodoro-timer">
+      <div class="timer__container">
+        <div class="type-btns__container">
+          <button id="pomodoro" class="type-btn _active">Pomodoro</button>
+          <button id="shortBreak" class="type-btn">Short break</button>
+          <button id="longBreak" class="type-btn">Long break</button>
+        </div>
+
+        <div class="main-timer">25:00</div>
+
+        <div class="timer-btn">
+          <button class="start-pause-btn">START</button>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
