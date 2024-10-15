@@ -1,11 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pomodoro</title>
+  </head>
+  <body>
+    <section class="pomodoro-timer">
+      <div class="timer__container">
+        <div class="type-btns__container">
+          <button id="pomodoro" class="type-btn _active">Pomodoro</button>
+          <button id="shortBreak" class="type-btn">Short break</button>
+          <button id="longBreak" class="type-btn">Long break</button>
+        </div>
+
+        <div class="main-timer"></div>
+
+        <div class="timer-btn__container">
+          <button class="timer-btn" id="start-btn">START</button>
+          <button class="timer-btn" id="pause-btn" style="display: none">
+            PAUSE
+          </button>
+          <button class="timer-btn" id="resume-btn" style="display: none">
+            RESUME
+          </button>
+        </div>
+      </div>
+      <div class="customize__container">
+        <div class="selectIfCustom">
+          <h2 class="custom-title">
+            Customize your time <i class="arrow-up"></i>
+          </h2>
+        </div>
+        <div class="custom__block">
+          <p class="custom-text">enter time in minutes for every mode</p>
+          <div class="edit-form">
+            <form>
+              <input
+                id="custom-pomodoro"
+                class="edit-time"
+                type="number"
+                placeholder="Time for pomodoro"
+              />
+
+              <input
+                id="custom-short-break"
+                class="edit-time"
+                type="number"
+                placeholder="Time for short break"
+              />
+
+              <input
+                id="custom-long-break"
+                class="edit-time"
+                type="number"
+                placeholder="Time for long break"
+              />
+
+              <button type="button" id="save-custom-time" class="timer-btn">
+                SAVE
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
