@@ -20,10 +20,54 @@
           <button id="longBreak" class="type-btn">Long break</button>
         </div>
 
-        <div class="main-timer">25:00</div>
+        <div class="main-timer"></div>
 
-        <div class="timer-btn">
-          <button class="start-pause-btn">START</button>
+        <div class="timer-btn__container">
+          <button class="timer-btn" id="start-btn">START</button>
+          <button class="timer-btn" id="pause-btn" style="display: none">
+            PAUSE
+          </button>
+          <button class="timer-btn" id="resume-btn" style="display: none">
+            RESUME
+          </button>
+        </div>
+      </div>
+      <div class="customize__container">
+        <div class="selectIfCustom">
+          <h2 class="custom-title">
+            Customize your time <i class="arrow-up"></i>
+          </h2>
+        </div>
+        <div class="custom__block">
+          <p class="custom-text">enter time in minutes for every mode</p>
+          <div class="edit-form">
+            <form>
+              <input
+                id="custom-pomodoro"
+                class="edit-time"
+                type="number"
+                placeholder="Time for pomodoro"
+              />
+
+              <input
+                id="custom-short-break"
+                class="edit-time"
+                type="number"
+                placeholder="Time for short break"
+              />
+
+              <input
+                id="custom-long-break"
+                class="edit-time"
+                type="number"
+                placeholder="Time for long break"
+              />
+
+              <button type="button" id="save-custom-time" class="timer-btn">
+                SAVE
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>

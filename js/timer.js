@@ -1,64 +1,92 @@
-const allTypeBtns = document.querySelectorAll(".type-btn");
-const body = document.body;
-const pomodoroMainColor = "rgb(186, 73, 73)";
-const shortBreakMainColor = "rgb(56, 133, 138)";
-const longBreakMainColor = "rgb(57, 112, 151)";
+import {
+  timerElement,
+  startBtn,
+  pauseBtn,
+  resumeBtn,
+  shortBreak,
+  pomodoroBtn,
+} from "./domElements.js";
+import timeSound from "../sounds/ring.mp3";
 
+const timeEndSound = new Audio(timeSound);
 
-const pomodoroBtn = document.querySelector("#pomodoro");
-const shortBreak = document.querySelector("#shortBreak");
-const longBreak = document.querySelector("#longBreak");
-const startPauseBtn = document.querySelector('.start-pause-btn');
-
-
-const removeClickedStyle = () => {
-  allTypeBtns.forEach((btn) => {
-    btn.classList.remove("_active");
+const playSound = () => {
+  timeEndSound.play().catch((error) => {
+    console.error("Error with song:", error);
   });
 };
 
-pomodoroBtn.addEventListener("click", () => {
-  removeClickedStyle();
-  pomodoroBtn.classList.add("_active");
-  bodyStyle();
-});
+let interval;
+let isPaused = false;
+let remainingTime;
 
-shortBreak.addEventListener("click", () => {
-  removeClickedStyle();
-  shortBreak.classList.add("_active");
-  bodyStyle();
-});
+export const setTimer = (minutes, seconds) => {
+  remainingTime = new Date();
+  remainingTime.setMinutes(minutes);
+  remainingTime.setSeconds(seconds);
 
-longBreak.addEventListener("click", () => {
-  removeClickedStyle();
-  longBreak.classList.add("_active");
-  bodyStyle();
-});
+  timerElement.textContent =
+    String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0");
+};
 
-startPauseBtn.addEventListener("click", () => {
-    if(startPauseBtn.innerText === 'START'){
-        startPauseBtn.innerHTML = 'PAUSE';
-    } else {
-        startPauseBtn.innerHTML = 'START';
+const updateTimer = () => {
+  remainingTime.setSeconds(remainingTime.getSeconds() - 1);
+
+  const minutesLeft = remainingTime.getMinutes();
+  const secondsLeft = remainingTime.getSeconds();
+
+  if (minutesLeft === 0 && secondsLeft === 0) {
+    clearInterval(interval);
+    timerElement.textContent = "00:00";
+    playSound();
+
+    if (pomodoroBtn.classList.contains("_active")) {
+      setTimeout(() => {
+        shortBreak.click();
+        startTimer();
+      }, 5000);
     }
-});
-
-
-function bodyStyle() {
-  if (pomodoroBtn.classList.contains("_active")) {
-    body.style.backgroundColor = pomodoroMainColor;
-    startPauseBtn.style.color = pomodoroMainColor;
+    return;
   }
 
-  if (shortBreak.classList.contains("_active")) {
-    body.style.backgroundColor = shortBreakMainColor;
-    startPauseBtn.style.color = shortBreakMainColor;
-  }
+  timerElement.textContent =
+    String(minutesLeft).padStart(2, "0") +
+    ":" +
+    String(secondsLeft).padStart(2, "0");
+};
 
-  if (longBreak.classList.contains("_active")) {
-    body.style.backgroundColor = longBreakMainColor;
-    startPauseBtn.style.color = longBreakMainColor;
+export const startTimer = () => {
+  if (!interval) {
+    interval = setInterval(updateTimer, 1000);
+    startBtn.style.display = "none";
+    pauseBtn.style.display = "inline-block";
   }
-}
+};
 
-bodyStyle();
+export const pauseTimer = () => {
+  if (!isPaused) {
+    clearInterval(interval);
+    isPaused = true;
+    pauseBtn.style.display = "none";
+    resumeBtn.style.display = "inline-block";
+  }
+};
+
+export const resumeTimer = () => {
+  if (isPaused) {
+    interval = setInterval(updateTimer, 1000);
+    isPaused = false;
+    resumeBtn.style.display = "none";
+    pauseBtn.style.display = "inline-block";
+  }
+};
+
+export const resetTimer = () => {
+  clearInterval(interval);
+  interval = null;
+  isPaused = false;
+  timerElement.textContent = "00:00";
+  startBtn.style.display = "inline-block";
+  pauseBtn.style.display = "none";
+  resumeBtn.style.display = "none";
+};
