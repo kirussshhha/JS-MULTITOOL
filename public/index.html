@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <div class="controls">
+      <div class="controls-inp">
+        <label class="controls-label" for="width">Ширина поля: </label><br />
+        <input
+          class="inp"
+          type="number"
+          id="width"
+          min="6"
+          max="12"
+          value="6"
+        />
+        <label class="controls-label" for="height">Высота поля: </label><br />
+        <input
+          class="inp"
+          type="number"
+          id="height"
+          min="6"
+          max="12"
+          value="6"
+        />
+      </div>
+      <button class="controls-btn" id="start">Start</button>
+      <button class="controls-btn" id="restart">Restart</button>
+    </div>
+
+    <div id="game"></div>
+  </body>
 </html>
